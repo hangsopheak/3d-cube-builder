@@ -64,9 +64,7 @@
 			init();
 			render();
 
-			$(function(){
-
-			});
+		
 			function init() {
 
 				container = $('#container');
@@ -83,7 +81,7 @@
 				// roll-over helpers
 
 				var rollOverGeo = new THREE.BoxGeometry( 50, 50, 50 );
-				rollOverMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000, opacity: 0.5, transparent: true } );
+				rollOverMaterial = new THREE.MeshBasicMaterial( { color: 0x4CCC31, opacity: 0.5, transparent: true } );
 				rollOverMesh = new THREE.Mesh( rollOverGeo, rollOverMaterial );
 				scene.add( rollOverMesh );
 
@@ -100,6 +98,7 @@
 				raycaster = new THREE.Raycaster();
 				mouse = new THREE.Vector2();
 
+				// container of grid
 				var geometry = new THREE.PlaneBufferGeometry( 1000, 1000 );
 				geometry.rotateX( - Math.PI / 2 );
 
@@ -124,7 +123,7 @@
 				// rotate camera when dragging backgroud
 				controls = new THREE.OrbitControls( camera, renderer.domElement );
 				controls.addEventListener( 'change', render ); // remove when using animation loop			
-				controls.enableZoom = false;
+				controls.enableZoom = true;
 
 				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 				document.addEventListener( 'mousedown', onDocumentMouseDown, false );
@@ -179,6 +178,7 @@
 
 				var intersects = raycaster.intersectObjects( objects );
 
+				// only in the geometry plane 
 				if ( intersects.length > 0 ) {
 
 					var intersect = intersects[ 0 ];
